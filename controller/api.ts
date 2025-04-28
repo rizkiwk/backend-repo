@@ -4,10 +4,11 @@ import { User } from '../entities/user';
 
 export const setUserData  = async (req: Request, res: Response) => {
     const userId = req.params.id;
+    const userPassword = req.body.password;
     const userData: User = req.body;
 
     try {
-        await setUser(userId, userData);
+        await setUser(userId, userData, userPassword);
         res.status(200).send({ message: `User data updated successfully` });
     } catch (error) {
         res.status(500).send({ error: `Failed to updated user data` });
